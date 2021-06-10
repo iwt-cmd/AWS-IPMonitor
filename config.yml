@@ -1,0 +1,10 @@
+---
+  creds:
+    aws_account: "string"
+    aws_key: "string"
+  zone:
+    zone_id: "string"
+    record: "test.test.com"
+    record_value: "1.2.3.4"
+  config:
+    log_file: "/var/log/aws-ipmonitor.log"
