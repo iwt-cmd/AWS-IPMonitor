@@ -26,7 +26,7 @@ def current_IP():
 if __name__ == "__main__":
     try:
         #Update path below if using different location to store config.yml.  Other file path changes are handled within config.yml
-        with open("/usr/src/aws-ipmonitor/config.yml", 'r') as ymlfile:
+        with open("/usr/src/AWS-IPMonitor/config.yml", 'r') as ymlfile:
             config = yaml.load(ymlfile, Loader=yaml.FullLoader)
     except:
         logging.warning("Config file not found")
