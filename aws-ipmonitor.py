@@ -18,6 +18,11 @@ def update_record(aws_account, aws_key, zone_id, record, record_value):
         HostedZoneId=zone_id,
         ChangeBatch={'Changes':[{'Action':'UPSERT', 'ResourceRecordSet':{'Name': record, 'Type':'A', 'TTL':300, 'ResourceRecords':[{'Value': record_value}]}}]}
     )
+
+#Get current outside IP from AWS CheckIP service
+def current_IP():
+    return ((requests.get('http://checkip.amazonaws.com')).text).replace("\n", "")
+
 if __name__ == "__main__":
     try:
         #Update path below if using different location to store config.yml.  Other file path changes are handled within config.yml
@@ -31,7 +36,7 @@ if __name__ == "__main__":
         aws_key =  config["creds"]["aws_key"]
         zone_id = config["zone"]["zone_id"]
         record = config["zone"]["record"]
-        record_value = config["zone"]["record_value"]
+        record_value = current_IP()
         log_file = config["config"]["log_file"]
     except:
         logging.warning("Config file not formatted correctly or missing values")
